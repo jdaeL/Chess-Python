@@ -1,5 +1,5 @@
-print("////////////////////////")
-print("         Chess")
-print("////////////////////////")
+from chessPictures import *
+from interpreter import draw
 
-# codigo aqui
+rock_picture = rock
+draw(rock_picture)
