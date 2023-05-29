@@ -2,12 +2,11 @@ from chessPictures import *
 from interpreter import draw
 from colors import inverter
 
+white_knight = knight
+black_knight = knight.negative()
 
-def draw_2x2_horses():
-    row1 = knight.join(knight)
-    row2 = knight.join(knight)
-    board = row1.under(row2) 
+row1 = white_knight.join(black_knight)
+row2 = black_knight.join(white_knight)
+board = row1.under(row2)
 
-    draw(board)
-   
-draw_2x2_horses()
+draw(board)
