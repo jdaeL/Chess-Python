@@ -32,13 +32,9 @@ class Picture:
         negative.append(negative_row)                                   # agrega la fila invertida a negative
     return Picture(negative) 
 
-  def join(self, p):
-        """Returns a new Picture object by joining two pictures side by side."""
-        joined = []
-        min_height = min(len(self.img), len(p.img))  # Get the minimum height between the two pictures
-        for i in range(min_height):
-            joined.append(self.img[i] + p.img[i])  # Concatenate the rows of both pictures
-        return Picture(joined)
+  def join(p1, p2):
+    joined_img = [row + p2_row for row, p2_row in zip(p1.img, p2.img)]
+    return Picture(joined_img)
 
   def up(self, p):
     return Picture(p.img + self.img)    # concatena las filas de la figura recibida y la figura actual
