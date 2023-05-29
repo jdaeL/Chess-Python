@@ -33,10 +33,12 @@ class Picture:
     return Picture(negative) 
 
   def join(self, p):
-    """ Devuelve una nueva figura poniendo la figura del argumento 
-        al lado derecho de la figura actual """
-    joined = [self.row + p_row for self.row, p_row, p_row in zip(self.img, p.img)] # concatena las filas de ambas figuras
-    return Picture(joined)
+        """Returns a new Picture object by joining two pictures side by side."""
+        joined = []
+        min_height = min(len(self.img), len(p.img))  # Get the minimum height between the two pictures
+        for i in range(min_height):
+            joined.append(self.img[i] + p.img[i])  # Concatenate the rows of both pictures
+        return Picture(joined)
 
   def up(self, p):
     return Picture(p.img + self.img)    # concatena las filas de la figura recibida y la figura actual
@@ -62,3 +64,4 @@ class Picture:
     o antihorario"""
     rotated = [''.join(row[i] for row in self.img[::-1]) for i in range(len(self.img[0]))]  # rota la imagen 90 grados
     return Picture(rotated) 
+    
