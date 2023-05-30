@@ -60,4 +60,16 @@ class Picture:
     o antihorario"""
     rotated = [''.join(row[i] for row in self.img[::-1]) for i in range(len(self.img[0]))]  # rota la imagen 90 grados
     return Picture(rotated) 
-    
+  
+  # SOBREPONER UNA PIEZA
+  def sobreponer(square_img, piece_img):
+    sobreponer_img = []
+    for i in range(len(square_img)):
+        sobreponer_row = ""
+        for j in range(len(square_img[i])):
+            if piece_img[i][j] != ' ':
+                sobreponer_row += piece_img[i][j]
+            else:
+                sobreponer_row += square_img[i][j]
+        sobreponer_img.append(sobreponer_row)
+    return Picture(sobreponer_img) 
