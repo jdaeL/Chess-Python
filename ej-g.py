@@ -1,18 +1,39 @@
 from chessPictures import *
 from interpreter import draw
-from colors import inverter
 
-squares = square.join(square.negative())
-squares_inv = (square.negative()).join(square)
-row1 = squares.join(squares).join(squares.join(squares))
-row2 = squares_inv.join(squares_inv).join(squares_inv.join(squares_inv))
-set_of_rows = row1.under(row2)
-rows = set_of_rows.under(set_of_rows)
+# negative en las piezas
+rockN = rock.negative()
+knightN = knight.negative()
+bishopN = bishop.negative()
+queenN = queen.negative()
+kingN = king.negative()
+peonN = pawn.negative()
+squareN = square.negative()
 
-# whole board 
-board = rows.under(rows)
+# Todas las piezas sobrepuestas con los squares
+rockNsquare = square.sobreponer(rockN)
+knightNsquare = square.sobreponer(knightN)
+bishopNsquare = square.sobreponer(bishopN)
+peonNsquare = square.sobreponer(peonN)
+rockNsquareN = squareN.sobreponer(rockN)
+knightNsquareN = squareN.sobreponer(knightN)
+bishopNsquareN = squareN.sobreponer(bishopN)
+peonNsquareN = squareN.sobreponer(peonN)
+rockSquare = square.sobreponer(rock)
+knightSquare = square.sobreponer(knight)
+bishopSquare = square.sobreponer(bishop)
+peonSquare = square.sobreponer(pawn)
+rockSquareN = squareN.sobreponer(rock)
+knightSquareN = squareN.sobreponer(knight)
+bishopSquareN = squareN.sobreponer(bishop)
+peonSquareN = squareN.sobreponer(pawn)
+kingNSquare = square.sobreponer(kingN)
+kingSquare = squareN.sobreponer(king)
+queenNSquare = squareN.sobreponer(queenN)
+queenSquare = square.sobreponer(queen)
 
-# faltara definir las piezas con  horizontalRepeat(self, n): y verticalRepeat(self, n):
-board_completed = 0
+# 
+chessboard = 0
 
-draw(board_completed)
+# 
+draw(chessboard)
