@@ -32,8 +32,15 @@ kingSquare = squareN.sobreponer(king)
 queenNSquare = squareN.sobreponer(queenN)
 queenSquare = square.sobreponer(queen)
 
-# 
-chessboard = 0
+# chessboard rows
+row1 = rockNsquare.join(knightNsquareN).join(bishopNsquare).join(queenNSquare).join(kingNSquare).join(bishopNsquareN).join(knightNsquare).join(rockNsquareN)
+row2 = (peonNsquareN.join(peonNsquare)).horizontalRepeat(4)
+centro1 = square.join(squareN).horizontalRepeat(4)
+centro2 = centro1.verticalMirror()
+row3 = (peonSquare.join(peonSquareN)).horizontalRepeat(4)
+row4 = rockSquareN.join(knightSquare).join(bishopSquareN).join(queenSquare).join(kingSquare).join(bishopSquare).join(knightSquareN).join(rockSquare)
 
-# 
+
+# concatenacion & dibujo
+chessboard = row1.up(row2).up(centro1.up(centro2).verticalRepeat(2)).up(row3).up(row4) 
 draw(chessboard)
