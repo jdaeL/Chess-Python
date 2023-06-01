@@ -16,20 +16,23 @@ class Picture:
   def verticalMirror(self):
     """ Devuelve el espejo vertical de la imagen """
     vertical = []
-    vertical = self.img[::-1]       # invierte el orden de las filas en la imagen
+    for x in self.img:
+       vertical.append(x[::-1])
     return Picture(vertical)
 
   def horizontalMirror(self):
     """ Devuelve el espejo horizontal de la imagen """
-    horizontal = [row[::-1] for row in self.img]     # invierte el orden de los elementos en cada fila de la imagen
+    horizontal = []
+    for row in self.img:
+        horizontal.insert(0, row)
     return Picture(horizontal)
 
   def negative(self):
     """ Devuelve un negativo de la imagen """
-    negative = []
-    for row in self.img:
-        negative_row = ''.join(self._invColor(color) for color in row)  # invierte el color de cada elemento en la fila
-        negative.append(negative_row)                                   # agrega la fila invertida a negative
+    negative = [
+       ''.join(self._invColor(char) for char in x)
+       for x in self.img
+    ]
     return Picture(negative) 
 
   def join(p1, p2):
@@ -37,22 +40,23 @@ class Picture:
     return Picture(joined_img)
 
   def up(self, p):
-    return Picture(p.img + self.img)    # concatena las filas de la figura recibida y la figura actual
+     image = self.img + p.img
+     return Picture(image)
 
   def under(self, p):
-    """ Devuelve una nueva figura poniendo la figura p sobre la
-        figura actual """
-    return Picture(self.img + p.img)    # concatena las filas de la figura actual y la figura recibida
+    return Picture(self.img + p.img)    
   
   def horizontalRepeat(self, n):
     """ Devuelve una nueva figura repitiendo la figura actual al costado
         la cantidad de veces que indique el valor de n """
-    repeated = [row * n for row in self.img]    # repite cada fila de la imagen 'n' veces
-    return Picture(repeated)
+    image = []
+    for i in range(0, len(self.img)):
+        image.append(self.img[i] * n)
+    return Picture(image)
 
   def verticalRepeat(self, n):
-    repeated = self.img * n     # repite la imagen completa 'n' veces
-    return Picture(repeated)    
+    image = self.img * n
+    return Picture(image)
 
   #Extra: Sólo para realmente viciosos 
   def rotate(self):
@@ -62,14 +66,14 @@ class Picture:
     return Picture(rotated) 
   
   # SOBREPONER UNA PIEZA
-  def sobreponer(square_img, piece_img):
-    sobreponer_img = []
-    for i in range(len(square_img)):
-        sobreponer_row = ""
-        for j in range(len(square_img[i])):
-            if piece_img[i][j] != ' ':
-                sobreponer_row += piece_img[i][j]
+  def sobreponer(self, p):
+    image = []
+    for i in range(len(self.img)):
+        line = ""
+        for j in range(len(self.img[i])):
+            if p.img[i][j] != " ":
+                line += p.img[i][j]
             else:
-                sobreponer_row += square_img[i][j]
-        sobreponer_img.append(sobreponer_row)
-    return Picture(sobreponer_img) 
+                line += self.img[i][j]
+        image.append(line)
+    return Picture(image)
